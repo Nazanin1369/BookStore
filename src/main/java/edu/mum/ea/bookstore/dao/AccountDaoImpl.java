@@ -22,7 +22,7 @@ import edu.mum.ea.bookstore.domain.Account;
 @Repository("accountDao")
 public class AccountDaoImpl implements AccountDao {
 
-    @Autowired
+    //@Autowired
     private SessionFactory sessionFactory;
 
     @Override

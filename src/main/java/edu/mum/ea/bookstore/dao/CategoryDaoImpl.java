@@ -27,7 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Repository("categoryDao")
 public class CategoryDaoImpl implements CategoryDao {
 
-    @Autowired
+    //@Autowired
     private SessionFactory sessionFactory;
 
     @Override

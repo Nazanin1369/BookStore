@@ -28,6 +28,7 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 /**
  * Hibernate implementation for the {@link BookRepository}.
@@ -37,9 +38,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Repository("bookDao")
 public class BookDaoImpl implements BookDao {
 
-    @Autowired
+    //@Autowired
+    //@Qualifier("sessionFactory")
     private SessionFactory sessionFactory;
 
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+    
     @Override
     public Book findById(long id) {
         return (Book) this.sessionFactory.getCurrentSession().get(Book.class, id);

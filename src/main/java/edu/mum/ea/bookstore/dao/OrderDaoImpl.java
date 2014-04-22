@@ -29,7 +29,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Repository("orderDao")
 public class OrderDaoImpl implements OrderDao {
 
-    @Autowired
+    //@Autowired
     private SessionFactory sessionFactory;
 
     @Override
