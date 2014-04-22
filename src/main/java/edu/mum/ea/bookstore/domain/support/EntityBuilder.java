@@ -11,6 +11,7 @@ import java.io.Serializable;
 import javax.persistence.EntityManager;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.hibernate.SessionFactory;
 
 /**
  * Super class for builders that build domain objects. 
@@ -22,7 +23,8 @@ import org.apache.commons.lang3.ArrayUtils;
  * 
  */
 public abstract class EntityBuilder<T extends Serializable> {
-
+       
+       private SessionFactory sf;
 	protected T product;
 
 	{
@@ -33,7 +35,8 @@ public abstract class EntityBuilder<T extends Serializable> {
 		T product = assembleProduct();
 		if (ArrayUtils.isEmpty(doNotPersist)
 				|| (ArrayUtils.isNotEmpty(doNotPersist) && doNotPersist[0] == Boolean.FALSE)) {
-			EntityBuilderManager.getEntityManager().persist(product);
+                   sf.getCurrentSession().persist(product);
+                    //EntityBuilderManager.getEntityManager().persist(product);
 		}
 		T temp = product;
 		initProduct();
@@ -44,18 +47,18 @@ public abstract class EntityBuilder<T extends Serializable> {
 
 	abstract T assembleProduct();
 
-	public static class EntityBuilderManager {
-		private static ThreadLocal<EntityManager> entityManagerHolder = new ThreadLocal<EntityManager>();
+	public static class SessionFactoryBuilderManager {
+		private static ThreadLocal<SessionFactory> entityManagerHolder = new ThreadLocal<SessionFactory>();
 
-		public static void setEntityManager(EntityManager entityManager) {
-			entityManagerHolder.set(entityManager);
+		public static void setSessionFactory(SessionFactory sf) {
+			entityManagerHolder.set(sf);
 		}
 
-		public static void clearEntityManager() {
+		public static void clearSessionFactory() {
 			entityManagerHolder.remove();
 		}
 
-		public static EntityManager getEntityManager() {
+		public static SessionFactory getSessionFactory() {
 			return entityManagerHolder.get();
 		}
 	}

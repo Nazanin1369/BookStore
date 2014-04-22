@@ -39,6 +39,7 @@ public class BookController {
     @RequestMapping(value = "p", method = RequestMethod.POST)
     public String add(Book book) {
         //bookDao.add(book);
+        //bookService.addBook(Book book)
         return "redirect:/book/";
     }
 
@@ -56,12 +57,14 @@ public class BookController {
     @RequestMapping(value = "update/{id}", method = RequestMethod.POST)
     public String update(Book book, @PathVariable int id) {
         //bookDao.update(id, book);
+        //bookService.updateBook(Book book)
         return "redirect:/book/";
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     public String delete(@PathVariable int id) {
         //bookDao.delete(id);
+        //bookService.deleteBook(Book book)
         return "redirect:/book/";
     }
 

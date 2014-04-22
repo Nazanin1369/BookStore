@@ -28,5 +28,9 @@ public interface BookDao {
     List<Book> findBooks(BookSearchCriteria bookSearchCriteria);
 
     void storeBook(Book book);
+    
+    void deleteBook(Book book);
+    
+    void updateBook(Book book);
 
 }

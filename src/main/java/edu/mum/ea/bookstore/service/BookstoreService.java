@@ -78,5 +78,9 @@ public interface BookstoreService {
      * @param book the book to store.
      */
     void addBook(Book book);
+    
+    void deleteBook(Book book);
+    
+    void updateBook(Book book);
 }
 

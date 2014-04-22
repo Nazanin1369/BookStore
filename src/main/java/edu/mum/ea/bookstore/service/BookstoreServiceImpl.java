@@ -104,4 +104,15 @@ public class BookstoreServiceImpl implements BookstoreService {
         this.bookDao.storeBook(book);
 
     }
+    @Override
+    @Transactional(readOnly = false)
+    public void deleteBook(Book book){
+        this.bookDao.deleteBook(book);
+    }
+    @Override
+    @Transactional(readOnly = false)
+    public void updateBook(Book book){
+        this.bookDao.updateBook(book);
+    }
+    
 }

@@ -29,7 +29,10 @@
     <bean id="accountDaoDao" class="edu.mum.ea.bookstore.dao.AccountDaoImpl">
         <property name="sessionFactory" ref="sessionFactory">
     </bean>
-    
+    <bean id="initialDataSetup" class="edu.mum.ea.bookstore.domain.support.InitialDataSetup" init-method="initialize">
+        <property name="sessionFactory" ref="sessionFactory">
+    </bean>
+            
     <!-- import security config -->
     <import resource="SpringSecurity.xml" />
     
@@ -57,15 +60,16 @@
             </list>
         </property>
     </bean>
+    
 
     <!-- the datasource -->
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://localhost/cs544" />
+        <property name="url" value="jdbc:mysql://localhost:3306/bookstore" />
         <property name="username" value="root" />
-<!--        <property name="password" value="nazanin@1369" /> -->
-        <property name="password" value="dipesh28" />
+       <property name="password" value="8706123" /> 
+       <!-- <property name="password" value="dipesh28" />-->
     </bean>
 
     <!-- hibernate Properties -->
@@ -74,7 +78,7 @@
         <property name="properties">
             <props>
                 <prop key="hibernate.hbm2ddl.auto">create</prop>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                 <prop key="connection.pool_size">1</prop>
                 <prop key="hibernate.show_sql">true</prop>
             </props>

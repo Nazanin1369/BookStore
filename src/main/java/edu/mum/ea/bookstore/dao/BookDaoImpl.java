@@ -96,4 +96,14 @@ public class BookDaoImpl implements BookDao {
     public void storeBook(Book book) {
         this.sessionFactory.getCurrentSession().saveOrUpdate(book);
     }
+    
+    @Override
+    public void deleteBook(Book book){
+        this.sessionFactory.getCurrentSession().delete(book);
+    }
+    
+    @Override
+    public void updateBook(Book book){
+        this.sessionFactory.getCurrentSession().saveOrUpdate(book);
+    }
 }
